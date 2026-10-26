@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manchester United: Current Situation</title>
+    <meta
+      name="description"
+      content="A concise digital overview of Manchester United's current club situation, performance, squad, and challenges."
+    />
+    <style>
+      :root {
+        --bg: #f5f5f3;
+        --panel: #ffffff;
+        --panel-alt: #f0f1f2;
+        --text: #111827;
+        --muted: #5b6470;
+        --red: #d71920;
+        --dark-red: #a50d17;
+        --gold: #facc15;
+        --line: #e6e7ea;
+        --shadow: 0 10px 25px rgba(17, 24, 39, 0.08);
+      }
+
+      * { box-sizing: border-box; }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(180deg, #f7f7f5 0%, #efefee 100%);
+        color: var(--text);
+      }
+
+      img { max-width: 100%; display: block; }
+
+      a { color: inherit; text-decoration: none; }
+
+      .container {
+        width: min(1150px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(15, 15, 16, 0.88);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .topbar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 72px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: white;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+
+      .crest {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--red), #910d16);
+        display: grid;
+        place-items: center;
+        font-size: 0.9rem;
+        font-weight: 800;
+        color: white;
+        box-shadow: inset 0 0 0 2px rgba(255,255,255,0.2);
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 0.92rem;
+        transition: color 0.2s ease;
+      }
+
+      nav a:hover { color: white; }
+
+      .hero {
+        background:
+          linear-gradient(135deg, rgba(19, 19, 21, 0.88), rgba(17, 24, 39, 0.7)),
+          url('https://images.unsplash.com/photo-1547347298-4074fc3086f0?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+        color: white;
+        padding: 88px 0 72px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.3fr 0.7fr;
+        gap: 28px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 999px;
+        padding: 8px 14px;
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+
+      h1 {
+        margin: 0 0 16px;
+        font-size: clamp(2.5rem, 6vw, 5rem);
+        line-height: 0.97;
+        letter-spacing: -0.06em;
+      }
+
+      .lead {
+        margin: 0 0 28px;
+        max-width: 680px;
+        color: rgba(255, 255, 255, 0.83);
+        font-size: 1.1rem;
+        line-height: 1.7;
+      }
+
+      .cta-row {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 22px;
+        border-radius: 10px;
+        font-weight: 700;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .btn:hover { transform: translateY(-1px); }
+
+      .btn-primary {
+        background: var(--red);
+        color: white;
+        box-shadow: 0 12px 25px rgba(215, 25, 32, 0.28);
+      }
+
+      .btn-secondary {
+        background: rgba(255,255,255,0.08);
+        color: white;
+        border: 1px solid rgba(255,255,255,0.18);
+      }
+
+      .hero-card {
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 22px;
+        padding: 26px;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-stat {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+
+      .hero-stat:last-child { border-bottom: none; }
+
+      .hero-stat strong {
+        font-size: 1.8rem;
+        letter-spacing: -0.05em;
+      }
+
+      .hero-stat span {
+        color: rgba(255,255,255,0.72);
+        font-size: 0.82rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      section {
+        padding: 72px 0;
+      }
+
+      .section-heading {
+        margin-bottom: 28px;
+      }
+
+      .section-heading h2 {
+        margin: 0 0 12px;
+        font-size: clamp(2rem, 4vw, 3rem);
+        letter-spacing: -0.05em;
+      }
+
+      .section-heading p {
+        margin: 0;
+        color: var(--muted);
+        max-width: 720px;
+        line-height: 1.7;
+      }
+
+      .insight-grid,
+      .metrics-grid,
+      .timeline-grid,
+      .highlights-grid {
+        display: grid;
+        gap: 20px;
+      }
+
+      .insight-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        padding: 24px;
+      }
+
+      .panel h3 {
+        margin: 0 0 14px;
+        font-size: 1.35rem;
+        letter-spacing: -0.03em;
+      }
+
+      .panel p,
+      .panel li {
+        color: var(--muted);
+        line-height: 1.7;
+        margin: 0;
+      }
+
+      .panel ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      .metrics-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .metric {
+        background: linear-gradient(180deg, #fff, #f7f7f8);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 24px 20px;
+        text-align: center;
+      }
+
+      .metric .value {
+        display: block;
+        font-size: clamp(2rem, 3vw, 2.8rem);
+        font-weight: 800;
+        letter-spacing: -0.06em;
+        color: var(--dark-red);
+        margin-bottom: 8px;
+      }
+
+      .metric .label {
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.76rem;
+      }
+
+      .timeline-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .timeline-item {
+        position: relative;
+        padding-left: 20px;
+        border-left: 2px solid var(--line);
+      }
+
+      .timeline-item:before {
+        content: "";
+        position: absolute;
+        left: -7px;
+        top: 5px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--red);
+        border: 3px solid white;
+      }
+
+      .timeline-item .date {
+        display: inline-block;
+        background: #fef2f2;
+        color: var(--dark-red);
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-weight: 700;
+        font-size: 0.78rem;
+        margin-bottom: 10px;
+      }
+
+      .timeline-item h3 {
+        margin: 0 0 10px;
+        font-size: 1.2rem;
+      }
+
+      .timeline-item p {
+        color: var(--muted);
+        line-height: 1.65;
+        margin: 0;
+      }
+
+      .highlights-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .highlight-card {
+        background: linear-gradient(135deg, #111827, #172033);
+        color: white;
+        border-radius: 20px;
+        padding: 28px;
+        box-shadow: var(--shadow);
+      }
+
+      .highlight-card h3 {
+        margin: 0 0 12px;
+        font-size: 1.4rem;
+      }
+
+      .highlight-card p {
+        margin: 0;
+        color: rgba(255,255,255,0.8);
+        line-height: 1.7;
+      }
+
+      .quote {
+        background: linear-gradient(135deg, #fef2f2, #ffffff);
+        border: 1px solid #f6d2d2;
+      }
+
+      .quote p {
+        font-size: clamp(1.2rem, 2vw, 1.8rem);
+        line-height: 1.4;
+        color: #1f2937;
+        letter-spacing: -0.04em;
+        margin: 0;
+      }
+
+      .quote small {
+        display: block;
+        margin-top: 16px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.78rem;
+      }
+
+      footer {
+        background: #0d1117;
+        color: rgba(255,255,255,0.8);
+        padding: 28px 0;
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 900px) {
+        .hero-grid,
+        .insight-grid,
+        .metrics-grid,
+        .timeline-grid,
+        .highlights-grid {
+          grid-template-columns: 1fr;
+        }
+
+        nav {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <div class="brand">
+          <div class="crest">MU</div>
+          <span>MANCHESTER UNITED</span>
+        </div>
+        <nav>
+          <a href="#overview">Overview</a>
+          <a href="#metrics">Metrics</a>
+          <a href="#issues">Key Issues</a>
+          <a href="#timeline">Timeline</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <div class="eyebrow">Club snapshot</div>
+            <h1>Manchester United: a club in transition.</h1>
+            <p class="lead">
+              Manchester United remain one of the biggest clubs in world football, but their current situation is defined by inconsistency,
+              pressure on the manager, a demanding fanbase, and the challenge of competing at the top level while rebuilding effectively.
+            </p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="#overview">Read the situation</a>
+              <a class="btn btn-secondary" href="#timeline">See recent context</a>
+            </div>
+          </div>
+
+          <div class="hero-card">
+            <div class="hero-stat">
+              <div>
+                <span>Competition</span>
+              </div>
+              <strong>Top-tier</strong>
+            </div>
+            <div class="hero-stat">
+              <div>
+                <span>Current mood</span>
+              </div>
+              <strong>Mixed</strong>
+            </div>
+            <div class="hero-stat">
+              <div>
+                <span>Main challenge</span>
+              </div>
+              <strong>Consistency</strong>
+            </div>
+            <div class="hero-stat">
+              <div>
+                <span>Pressure</span>
+              </div>
+              <strong>High</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="overview">
+        <div class="container">
+          <div class="section-heading">
+            <h2>What the current situation looks like</h2>
+            <p>
+              United are still a global force commercially and in brand value, but the true challenge is on the pitch: finding a sustainable identity,
+              improving squad depth, and balancing short-term results with long-term planning.
+            </p>
+          </div>
+
+          <div class="insight-grid">
+            <article class="panel">
+              <h3>On the pitch</h3>
+              <p>
+                The team has shown flashes of quality, but match-to-match inconsistency remains a defining issue. The club is often judged not only on results,
+                but on whether performances match the standards expected of Manchester United.
+              </p>
+            </article>
+
+            <article class="panel">
+              <h3>Off the pitch</h3>
+              <p>
+                United continue to be a financial giant in world football, with major sponsorship and broadcast revenue helping maintain their position at the top of the sport’s hierarchy.
+              </p>
+            </article>
+
+            <article class="panel">
+              <h3>Fan sentiment</h3>
+              <p>
+                Supporters are split between patience for a rebuild and frustration at the lack of clear progress. For a club of this size, the standard is not simply competing — it is competing with authority.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="metrics">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Key indicators</h2>
+          </div>
+
+          <div class="metrics-grid">
+            <div class="metric">
+              <span class="value">1</span>
+              <span class="label">Worldwide fanbase</span>
+            </div>
+            <div class="metric">
+              <span class="value">3</span>
+              <span class="label">Main pressure points</span>
+            </div>
+            <div class="metric">
+              <span class="value">24/7</span>
+              <span class="label">Media scrutiny</span>
+            </div>
+            <div class="metric">
+              <span class="value">High</span>
+              <span class="label">Expectations</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="issues">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Core issues facing the club</h2>
+          </div>
+
+          <div class="highlights-grid">
+            <div class="highlight-card">
+              <h3>1. Inconsistency in results</h3>
+              <p>
+                United’s biggest problem remains producing reliable performances across a full season. Strong results are often followed by unexpected drop-offs,
+                which makes the club look unstable despite its status and resources.
+              </p>
+            </div>
+
+            <div class="highlight-card">
+              <h3>2. Squad identity and depth</h3>
+              <p>
+                A competitive squad needs balance, rhythm, and clarity in roles. The club has often been criticized for lacking a coherent tactical identity or a settled long-term structure.
+              </p>
+            </div>
+
+            <div class="highlight-card">
+              <h3>3. External pressure</h3>
+              <p>
+                Every result is amplified because of the club’s global prominence. Fans, media, and pundits expect excellence, which can make even small setbacks feel like existential crises.
+              </p>
+            </div>
+
+            <div class="quote">
+              <p>“It is not enough to be a famous club; it must become a consistently successful one again.”</p>
+              <small>Club reality</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="timeline">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Recent context</h2>
+            <p>
+              The modern United story is shaped by eras of ambition, changing managers, transfer strategy, and a constant effort to restore the team’s former dominance.
+            </p>
+          </div>
+
+          <div class="timeline-grid">
+            <article class="timeline-item">
+              <span class="date">Recent seasons</span>
+              <h3>Rebuild pressure</h3>
+              <p>
+                The club has had to wrestle with the reality of competing after a period of transition, with major calls on recruitment and squad direction.
+              </p>
+            </article>
+
+            <article class="timeline-item">
+              <span class="date">Managerial spotlight</span>
+              <h3>Decision-making under scrutiny</h3>
+              <p>
+                United’s managers are judged not just on style, but on whether they can deliver consistent progress in a demanding environment.
+              </p>
+            </article>
+
+            <article class="timeline-item">
+              <span class="date">Now</span>
+              <h3>Stability still elusive</h3>
+              <p>
+                The current moment is less about panic and more about urgency: the club needs a clear strategy and a visible path back to sustained competitiveness.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <div>Manchester United: current situation overview</div>
+        <div>Football analysis • Club profile • 2026</div>
+      </div>
+    </footer>
+  </body>
+</html>
